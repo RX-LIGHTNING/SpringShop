@@ -8,7 +8,7 @@
     <title>Register</title>
 </head>
 <body>
-<form th:action="@{/register/accept}" th:object="${User}"method="post">
+<form th:action="@{/register/accept}" th:object="${User}" method="post">
     <input type="text" name="username" id="username" th:field="*{username}">
     <input type="text" name="mail" id="mail" th:field="*{mail}">
     <input type="text" name="phoneNumber" id="phoneNumber" th:field="*{phoneNumber}">
