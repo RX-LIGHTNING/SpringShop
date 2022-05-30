@@ -15,7 +15,7 @@ public class User {
     private String username;
     private String passwordHash;
     private String phoneNumber;
-    private boolean active;
+    private boolean active = true;
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
@@ -75,5 +75,8 @@ public class User {
 
     public Long getId() {
         return id;
+    }
+
+    public User() {
     }
 }

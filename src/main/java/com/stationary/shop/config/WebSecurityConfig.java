@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/","/registration","/aboutus").permitAll()
+                .antMatchers("/","/register").permitAll()
                 .antMatchers("/admin-panel/*","/admin-panel").hasAuthority("ADMIN")
                 .and()
                 .formLogin()
@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(new BCryptPasswordEncoder())
-                .usersByUsernameQuery("select username,password,active from users where username = ?")
+                .usersByUsernameQuery("select username,password_hash,active from users where username = ?")
                 .authoritiesByUsernameQuery("select u.username, ur.roles from users u inner join user_role ur on u.id = ur.user_id where u.username = ?");
     }
 }
