@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Add</title>
+</head>
+<body>
+<form th:action="@{/product/edit/accept}" th:object="${Product}" method="post">
+    <input placeholder="name" type="text" name="name" id="name" th:field="*{name}"><br>
+    <input placeholder="description" type="text" name="description" id="description" th:field="*{description}"><br>
+    <input placeholder="Producer" type="text" name="producer" id="producer" th:field="*{producer}"><br>
+    <input placeholder="Quantity" type="number" name="quantity" id="quantity" th:field="*{quantity}"><br>
+    <input placeholder="Price" type="text" name="price" id="price" th:field="*{price}"><br>
+    <input type="hidden" name="id" th:field="*{id}">
+    <input type="submit">
+</form>
+</body>
+</html>
