@@ -69,8 +69,10 @@ public class Product {
         this.id = id;
     }
 
-    @Id
     public Long getId() {
         return id;
+    }
+
+    public Product() {
     }
 }

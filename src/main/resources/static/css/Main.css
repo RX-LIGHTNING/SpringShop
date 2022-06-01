@@ -1,0 +1,11 @@
+#header{
+    background-color: #2D2D44 !important;
+    height: 72px;
+}
+.navbar-collapse{
+    background-color: #2D2D44 !important;
+    z-index: 1;
+}
+body{
+    background-color: #F3ECD8 !important;
+}

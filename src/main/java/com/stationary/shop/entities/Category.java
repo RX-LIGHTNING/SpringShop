@@ -6,13 +6,14 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "products")
+@Table(name = "categories")
 public class Category {
     @Id
     @GeneratedValue
     private Long id;
     private String name;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
     private List<Product> products;
 
     public String getName() {
@@ -35,8 +36,10 @@ public class Category {
         this.id = id;
     }
 
-    @Id
     public Long getId() {
         return id;
+    }
+
+    public Category() {
     }
 }
