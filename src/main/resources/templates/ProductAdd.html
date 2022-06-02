@@ -11,6 +11,13 @@
     <input placeholder="Producer" type="text" name="producer" id="producer" th:field="*{producer}"><br>
     <input placeholder="Quantity" type="number" name="quantity" id="quantity" th:field="*{quantity}"><br>
     <input placeholder="Price" type="text" name="price" id="price" th:field="*{price}"><br>
+    <select th:field="*{category}">
+        <option th:each="category : ${categories}"
+                th:value="${category.getId()}"
+                th:text="${category.getName()}">
+            Address
+        </option>
+    </select><br>
     <input type="submit">
 </form>
 </body>
