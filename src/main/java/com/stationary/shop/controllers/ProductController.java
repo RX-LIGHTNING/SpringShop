@@ -1,7 +1,6 @@
 package com.stationary.shop.controllers;
 
 import com.stationary.shop.entities.Product;
-import com.stationary.shop.entities.User;
 import com.stationary.shop.services.CategoryService;
 import com.stationary.shop.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +27,13 @@ public class ProductController {
     public String getProductAddPage(Model model){
         model.addAttribute("Product", new Product());
         model.addAttribute("categories", categoryService.getCategoryRepo().findAll());
-        return "ProductAdd";
+        return "ProductCRUD/ProductAdd";
     }
     @GetMapping("/product/edit")
     public String getProductEditPage(Model model, @RequestParam(name="id", required = true)long id){
         model.addAttribute("Product", productService.getProdRepo().findById(id).get());
         model.addAttribute("categories", categoryService.getCategoryRepo().findAll());
-        return "ProductEdit";
+        return "ProductCRUD/ProductEdit";
     }
     @PostMapping("/product/add/accept")
     public String productAddAccept(Model model, @ModelAttribute("Product") Product product){
