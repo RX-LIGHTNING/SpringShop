@@ -19,7 +19,7 @@
                 <img src="..." class="card-img-top mx-auto" alt="...">
                 <div class="card-body">
                     <p class="card-title" th:text="${el.getName()}"></p>
-                    <a href="#" class="btn btn-outline-warning">О товаре</a> <span th:text="${el.getPrice()+'руб'}">10 руб</span>
+                    <a th:href="${'/product/view?id='+el.getId()}" class="btn btn-outline-warning">О товаре</a> <span th:text="${el.getPrice()+'руб'}">10 руб</span>
                 </div>
             </div>
         </div>
