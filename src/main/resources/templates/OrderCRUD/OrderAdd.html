@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Add</title>
+</head>
+<body>
+<form th:action="@{/order/add/accept}" th:object="${Order}" method="post">
+    <input placeholder="user" type="text" name="name" id="name" th:field="*{user}"><br>
+    <input placeholder="product" type="text" name="name" id="name" th:field="*{product}"><br>
+    <input placeholder="product" type="text" name="name" id="quantity" th:field="*{quantity}"><br>
+    <select th:field="*{orderStatus}">
+        <option th:each="orderStatus : ${orderStatuses}"
+                th:value="${orderStatus}"
+                th:text="${orderStatus}">
+            Address
+        </option>
+    </select><br>
+    <input type="submit">
+</form>
+</body>
+</html>
