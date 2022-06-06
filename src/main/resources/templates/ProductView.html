@@ -3,12 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Product View</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/Main.css}">
+    <link rel="stylesheet" th:href="@{/css/popUp.css}">
 </head>
 <body>
 <header th:insert="components/header :: header"></header>
-<h1 th:text="${Product.getName()}"></h1>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-6">
+                    <div class="white-box text-center"><img src="https://via.placeholder.com/430x701/00CED1/000000" class="img-responsive"></div>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-6">
+                    <h3 class="card-title" th:text="${Product.getName()}"></h3>
+                    <h4 class="box-title mt-5">Описание товара</h4>
+                    <p th:text="${Product.getDescription()}"></p>
+                    <h3 class="box-title mt-5">Характеристики</h3>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-check text-success"></i>Sturdy structure</li>
+                        <li><i class="fa fa-check text-success"></i>Designed to foster easy portability</li>
+                        <li><i class="fa fa-check text-success"></i>Perfect furniture to flaunt your wonderful collectibles</li>
+                    </ul>
+                    <h2 class="mt-5" th:text="${Product.getPrice()+' Руб/шт'}">
+                    </h2>
+                    <a class="btn btn-outline-primary btn-rounded" href="javascript:PopUpShow()">Заказать</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="b-popup" id="popup1">
+    <div class="b-popup-content">
+        <a href="javascript:PopUpHide()">Hide popup</a>
+    </div>
+</div>
+
+<script th:src="@{/js/popUp.js}"></script>
 </body>
 </html>
