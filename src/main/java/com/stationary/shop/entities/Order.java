@@ -18,6 +18,15 @@ public class Order {
     private Product product;
     @OneToOne
     private User user;
+    private int quantity;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public Long getId() {
         return id;
@@ -51,5 +60,9 @@ public class Order {
         this.user = user;
     }
 
-    public Order(){}
+    public Order(Product product){
+        this.setProduct(product);
+    }
+    public Order(){
+    }
 }

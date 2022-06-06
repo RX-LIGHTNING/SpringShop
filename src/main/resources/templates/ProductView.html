@@ -40,8 +40,13 @@
     </div>
 </div>
 <div class="b-popup" id="popup1">
-    <div class="b-popup-content">
-        <a href="javascript:PopUpHide()">Hide popup</a>
+    <div class="b-popup-content container">
+        <a class="btn btn-outline-danger btn-rounded" href="javascript:PopUpHide()">Back</a>
+        <form th:action="@{/order/add/accept}" th:object="${Order}" method="post">
+            <input placeholder="product" type="number" name="name" id="quantity" th:field="*{quantity}"><br>
+            <input type="hidden" name="name" id="name" th:field="*{product}">
+            <input type="submit">
+        </form>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

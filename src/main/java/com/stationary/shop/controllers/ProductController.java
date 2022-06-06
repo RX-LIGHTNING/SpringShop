@@ -1,6 +1,8 @@
 package com.stationary.shop.controllers;
 
+import com.stationary.shop.entities.Order;
 import com.stationary.shop.entities.Product;
+import com.stationary.shop.entities.enums.OrderStatus;
 import com.stationary.shop.services.CategoryService;
 import com.stationary.shop.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ public class ProductController {
 
     @GetMapping("/product/view")
     public String getProductViewPage(Model model, @RequestParam(name="id", required = true)long id){
+        model.addAttribute("Order", new Order(productService.getProdRepo().findById(id).get()));
         model.addAttribute("Product", productService.getProdRepo().findById(id).get());
         return "ProductView";
     }
