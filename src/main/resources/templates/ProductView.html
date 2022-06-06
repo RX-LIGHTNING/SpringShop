@@ -45,7 +45,7 @@
         <form th:action="@{/order/add/accept}" th:object="${Order}" method="post">
             <input placeholder="product" type="number" name="name" id="quantity" th:field="*{quantity}"><br>
             <input type="hidden" name="name" id="name" th:field="*{product}">
-            <input type="submit">
+            <input class="btn btn-outline-success btn-rounded" type="submit">
         </form>
     </div>
 </div>
