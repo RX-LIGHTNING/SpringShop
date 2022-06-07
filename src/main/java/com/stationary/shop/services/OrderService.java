@@ -31,6 +31,11 @@ public class OrderService {
     public List<Order> getOrdersByUser(User user){
         return orderRepo.getOrdersByUser(user);
     }
+    public void cancelOrder(Long id){
+        Order temp = orderRepo.findById(id).get();
+        temp.setOrderStatus(OrderStatus.CANCELED);
+        orderRepo.save(temp);
+    }
     public OrderRepo getOrderRepo() {
         return orderRepo;
     }

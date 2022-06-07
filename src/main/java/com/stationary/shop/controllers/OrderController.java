@@ -16,7 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class OrderController {
     @Autowired
     OrderService orderService;
-
+    @GetMapping("/Orders")
+    public String getCategoryAddPage(Model model){
+        model.addAttribute("orders",orderService.getOrdersByCurrentUser());
+        return "Orders";
+    }
     @GetMapping("/order/add")
     public String getOrderAddPage(Model model) {
         model.addAttribute("Order", new Order());
@@ -38,5 +42,10 @@ public class OrderController {
     public String orderEditAccept(Model model, @ModelAttribute("Order") Order order) {
         orderService.saveOrder(order);
         return "redirect:/Store";
+    }
+    @PostMapping("/order/cancel")
+    public String orderCancel(Model model, @ModelAttribute("id") Long id) {
+        orderService.cancelOrder(id);
+        return "redirect:/Orders";
     }
 }
