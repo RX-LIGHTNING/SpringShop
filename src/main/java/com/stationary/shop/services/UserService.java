@@ -16,9 +16,12 @@ public class UserService {
     @Autowired
     PasswordEncoder passwordEncoder;
     public User registration(User user){
+        System.out.println(2);
         if (userRepo.findByUsername(user.getUsername()) != null) {
+            System.out.println(3);
             return null;
         }
+        System.out.println(4);
         user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
         user.setRoles(Collections.singleton(Role.USER));
         return userRepo.save(user);
