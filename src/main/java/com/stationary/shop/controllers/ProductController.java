@@ -26,6 +26,11 @@ public class ProductController {
         model.addAttribute("Product", productService.getProdRepo().findById(id).get());
         return "ProductView";
     }
+    @GetMapping("/AdminPanel/Products")
+    public String getAdminProductViewPage(Model model){
+        model.addAttribute("products", productService.getProducts());
+        return "/AdminPanel/ProductCRUD/ProductList";
+    }
     @GetMapping("/AdminPanel/product/add")
     public String getProductAddPage(Model model){
         model.addAttribute("Product", new Product());
