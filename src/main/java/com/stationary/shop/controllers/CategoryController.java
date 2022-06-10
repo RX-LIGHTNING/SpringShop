@@ -15,22 +15,22 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
-    @GetMapping("/category/add")
+    @GetMapping("/AdminPanel/category/add")
     public String getCategoryAddPage(Model model){
         model.addAttribute("Category", new Category());
-        return "CategoryCRUD/CategoryAdd";
+        return "AdminPanel/CategoryCRUD/CategoryAdd";
     }
-    @PostMapping("/category/add/accept")
+    @PostMapping("/AdminPanel/category/add/accept")
     public String categoryAddAccept(Model model, @ModelAttribute("Category") Category category){
         categoryService.saveCategory(category);
         return "redirect:/Store";
     }
-    @GetMapping("/category/edit")
+    @GetMapping("/AdminPanel/category/edit")
     public String getCategoryEditPage(Model model, @RequestParam(name="id", required = true)long id){
         model.addAttribute("Category", categoryService.getCategoryRepo().findById(id));
-        return "CategoryCRUD/CategoryAdd";
+        return "AdminPanel/CategoryCRUD/CategoryEdit";
     }
-    @PostMapping("/category/edit/accept")
+    @PostMapping("/AdminPanel/category/edit/accept")
     public String categoryEditAccept(Model model, @ModelAttribute("Category") Category category){
         categoryService.saveCategory(category);
         return "redirect:/Store";

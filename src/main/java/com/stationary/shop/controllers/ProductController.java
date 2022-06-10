@@ -26,24 +26,24 @@ public class ProductController {
         model.addAttribute("Product", productService.getProdRepo().findById(id).get());
         return "ProductView";
     }
-    @GetMapping("/product/add")
+    @GetMapping("/AdminPanel/product/add")
     public String getProductAddPage(Model model){
         model.addAttribute("Product", new Product());
         model.addAttribute("categories", categoryService.getCategoryRepo().findAll());
-        return "ProductCRUD/ProductAdd";
+        return "/AdminPanel/ProductCRUD/ProductAdd";
     }
-    @GetMapping("/product/edit")
+    @GetMapping("/AdminPanel/product/edit")
     public String getProductEditPage(Model model, @RequestParam(name="id", required = true)long id){
         model.addAttribute("Product", productService.getProdRepo().findById(id).get());
         model.addAttribute("categories", categoryService.getCategoryRepo().findAll());
-        return "ProductCRUD/ProductEdit";
+        return "/AdminPanel/ProductCRUD/ProductEdit";
     }
-    @PostMapping("/product/add/accept")
+    @PostMapping("/AdminPanel/product/add/accept")
     public String productAddAccept(Model model, @ModelAttribute("Product") Product product){
         productService.saveProduct(product);
         return "redirect:/Store";
     }
-    @PostMapping("/product/edit/accept")
+    @PostMapping("/AdminPanel/product/edit/accept")
     public String productEditAccept(Model model, @ModelAttribute("Product") Product product){
         productService.updateProduct(product);
         return "redirect:/Store";

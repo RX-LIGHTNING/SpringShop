@@ -21,24 +21,24 @@ public class OrderController {
         model.addAttribute("orders",orderService.getOrdersByCurrentUser());
         return "Orders";
     }
-    @GetMapping("/order/add")
+    @GetMapping("/AdminPanel/order/add")
     public String getOrderAddPage(Model model) {
         model.addAttribute("Order", new Order());
         model.addAttribute("orderStatuses", OrderStatus.values());
-        return "OrderCRUD/OrderAdd";
+        return "/AdminPanel/OrderCRUD/OrderAdd";
     }
-    @GetMapping("/order/edit")
+    @GetMapping("/AdminPanel/order/edit")
     public String getOrderEditPage(Model model, @RequestParam(name="id", required = true)long id) {
         model.addAttribute("Order", orderService.getOrderRepo().findById(id));
         model.addAttribute("orderStatuses", OrderStatus.values());
-        return "OrderCRUD/OrderEdit";
+        return "/AdminPanel/OrderCRUD/OrderEdit";
     }
     @PostMapping("/order/add/accept")
     public String orderAddAccept(Model model, @ModelAttribute("Order") Order order) {
         orderService.saveOrder(order);
         return "redirect:/Store";
     }
-    @PostMapping("/order/edit/accept")
+    @PostMapping("/AdminPanel/order/edit/accept")
     public String orderEditAccept(Model model, @ModelAttribute("Order") Order order) {
         orderService.saveOrder(order);
         return "redirect:/Store";
