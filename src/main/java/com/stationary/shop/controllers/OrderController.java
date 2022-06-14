@@ -21,6 +21,11 @@ public class OrderController {
         model.addAttribute("orders",orderService.getOrdersByCurrentUser());
         return "Orders";
     }
+    @GetMapping("/AdminPanel/Orders")
+    public String getCategoriesListPage(Model model){
+        model.addAttribute("Orders", orderService.getOrderRepo().findAll());
+        return "AdminPanel/OrderCRUD/OrderList";
+    }
     @GetMapping("/AdminPanel/order/add")
     public String getOrderAddPage(Model model) {
         model.addAttribute("Order", new Order());
@@ -41,7 +46,7 @@ public class OrderController {
     @PostMapping("/AdminPanel/order/edit/accept")
     public String orderEditAccept(Model model, @ModelAttribute("Order") Order order) {
         orderService.saveOrder(order);
-        return "redirect:/Store";
+        return "redirect:/AdminPanel/Orders";
     }
     @PostMapping("/order/cancel")
     public String orderCancel(Model model, @ModelAttribute("id") Long id) {

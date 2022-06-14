@@ -20,6 +20,11 @@ public class CategoryController {
         model.addAttribute("Category", new Category());
         return "AdminPanel/CategoryCRUD/CategoryAdd";
     }
+    @GetMapping("/AdminPanel/Categories")
+    public String getCategoriesListPage(Model model){
+        model.addAttribute("Categories", categoryService.getCategoryRepo().findAll());
+        return "AdminPanel/CategoryCRUD/CategoryList";
+    }
     @PostMapping("/AdminPanel/category/add/accept")
     public String categoryAddAccept(Model model, @ModelAttribute("Category") Category category){
         categoryService.saveCategory(category);

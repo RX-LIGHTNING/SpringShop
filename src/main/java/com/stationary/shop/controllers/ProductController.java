@@ -51,6 +51,6 @@ public class ProductController {
     @PostMapping("/AdminPanel/product/edit/accept")
     public String productEditAccept(Model model, @ModelAttribute("Product") Product product){
         productService.updateProduct(product);
-        return "redirect:/Store";
+        return "redirect:/AdminPanel/Products";
     }
 }
