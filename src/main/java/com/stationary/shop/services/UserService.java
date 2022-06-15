@@ -8,6 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -15,16 +17,23 @@ public class UserService {
     UserRepo userRepo;
     @Autowired
     PasswordEncoder passwordEncoder;
-    public User registration(User user){
-        System.out.println(2);
+
+    public User registration(User user) {
         if (userRepo.findByUsername(user.getUsername()) != null) {
-            System.out.println(3);
             return null;
         }
-        System.out.println(4);
         user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
         user.setRoles(Collections.singleton(Role.USER));
         return userRepo.save(user);
     }
+    public void edit(User user, Role[] roles) {
+        Set<Role> targetSet = new HashSet<Role>();
+        Collections.addAll(targetSet, roles);
+        user.setRoles(targetSet);
+        userRepo.save(user);
+    }
 
+    public UserRepo getUserRepo() {
+        return userRepo;
+    }
 }
