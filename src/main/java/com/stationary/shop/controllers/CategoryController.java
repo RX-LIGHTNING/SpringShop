@@ -25,6 +25,11 @@ public class CategoryController {
         model.addAttribute("Categories", categoryService.getCategoryRepo().findAll());
         return "AdminPanel/CategoryCRUD/CategoryList";
     }
+    @GetMapping("/AdminPanel/category/delete")
+    public String deleteUser(Model model, @RequestParam(name="id", required = true)long id){
+        categoryService.deleteCategory(id);
+        return "redirect:/AdminPanel/Categories";
+    }
     @PostMapping("/AdminPanel/category/add/accept")
     public String categoryAddAccept(Model model, @ModelAttribute("Category") Category category){
         categoryService.saveCategory(category);

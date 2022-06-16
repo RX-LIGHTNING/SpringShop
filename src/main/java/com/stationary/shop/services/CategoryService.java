@@ -18,4 +18,8 @@ public class CategoryService {
     public void saveCategory(Category category){
         categoryRepo.save(category);
     }
+
+    public void deleteCategory(long id) {
+        categoryRepo.deleteById(id);
+    }
 }

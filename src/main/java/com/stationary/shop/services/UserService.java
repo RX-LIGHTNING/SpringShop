@@ -26,6 +26,9 @@ public class UserService {
         user.setRoles(Collections.singleton(Role.USER));
         return userRepo.save(user);
     }
+    public void deleteUser(Long id){
+        userRepo.deleteById(id);
+    }
     public void edit(User user, Role[] roles) {
         Set<Role> targetSet = new HashSet<Role>();
         Collections.addAll(targetSet, roles);

@@ -35,6 +35,11 @@ public class UserController {
         model.addAttribute("Roles", Role.values());
         return "/AdminPanel/UserCRUD/UserEdit";
     }
+    @GetMapping("/AdminPanel/Users/delete")
+    public String deleteUser(Model model, @RequestParam(name="id", required = true)long id){
+        userService.deleteUser(id);
+        return "redirect:/AdminPanel/Users";
+    }
     @PostMapping("/AdminPanel/Users/edit/accept")
     public String EditAcceptPage(Model model, User user, @RequestParam(value = "selected", required = false)Role[] selected){
         userService.edit(user, selected);

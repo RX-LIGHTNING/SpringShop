@@ -2,6 +2,7 @@ package com.stationary.shop.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -17,7 +18,9 @@ public class Product {
     private Integer quantity;
     @OneToOne
     private Category category;
-
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private List<Order> order;
     public String getName() {
         return name;
     }

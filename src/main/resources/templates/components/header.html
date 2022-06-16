@@ -21,6 +21,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/Orders">Заказы</a>
                     </li>
+                    <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+                        <a href="/AdminPanel" class="nav-link">Админ панель</a>
+                    </li>
                 </ul>
                 <div class="d-flex" sec:authorize="isAnonymous()">
                     <ul class="navbar-nav mr-auto mb-3 mb-lg-0">
@@ -34,7 +37,8 @@
                 </div>
                 <div class="flex-shrink-0 dropdown" sec:authorize="isAuthenticated()">
                     <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser"
-                       data-bs-toggle="dropdown" aria-expanded="false" th:text="${#authentication.getPrincipal().getUsername()}"></a>
+                       data-bs-toggle="dropdown" aria-expanded="false"
+                       th:text="${#authentication.getPrincipal().getUsername()}"></a>
                     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser" style="">
                         <li><a class="dropdown-item"
                                th:href="'/profile?username='+${#authentication.getPrincipal().getUsername()}">Profile</a>

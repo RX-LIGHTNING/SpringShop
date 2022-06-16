@@ -43,6 +43,11 @@ public class ProductController {
         model.addAttribute("categories", categoryService.getCategoryRepo().findAll());
         return "/AdminPanel/ProductCRUD/ProductEdit";
     }
+    @GetMapping("/AdminPanel/product/delete")
+    public String deleteUser(Model model, @RequestParam(name="id", required = true)long id){
+       productService.deleteProduct(id);
+        return "redirect:/AdminPanel/Products";
+    }
     @PostMapping("/AdminPanel/product/add/accept")
     public String productAddAccept(Model model, @ModelAttribute("Product") Product product){
         productService.saveProduct(product);
