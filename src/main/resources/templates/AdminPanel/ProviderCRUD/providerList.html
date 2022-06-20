@@ -13,16 +13,15 @@
 <body>
 <header th:insert="components/header :: header"></header>
 <div class="container mt-5">
-    <a href="/AdminPanel/product/add" class="">Добавить товар</a>
+    <a href="/AdminPanel/provider/add" class="">Добавить поставщика</a>
     <div class="row" >
-        <div class="col pt-3" th:each="el : ${products}">
+        <div class="col pt-3" th:each="el : ${providers}">
             <div class="card">
                 <img src="..." class="card-img-top mx-auto" alt="...">
                 <div class="card-body">
                     <p class="card-title" th:text="${el.getName()}"></p>
-                    <a th:href="${'/product/view?id='+el.getId()}" class="btn btn-outline-warning">О товаре</a>
-                    <a th:href="${'/AdminPanel/product/edit?id='+el.getId()}" class="btn btn-outline-warning">Редактировать</a>
-                    <a th:href="${'/AdminPanel/product/delete?id='+el.getId()}" class="btn btn-outline-danger">Удалить</a>
+                    <a th:href="${'/AdminPanel/provider/edit?id='+el.getId()}" class="btn btn-outline-warning">Редактировать</a>
+                    <a th:href="${'/AdminPanel/provider/delete?id='+el.getId()}" class="btn btn-outline-danger">Удалить</a>
                 </div>
             </div>
         </div>

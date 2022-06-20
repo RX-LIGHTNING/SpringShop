@@ -14,7 +14,6 @@
     <input placeholder="name" type="text" name="name" id="name" th:field="*{name}"><br>
     <input placeholder="description" type="text" name="description" id="description" th:field="*{description}"><br>
     <input placeholder="Producer" type="text" name="producer" id="producer" th:field="*{producer}"><br>
-    <input placeholder="Quantity" type="number" name="quantity" id="quantity" th:field="*{quantity}"><br>
     <input placeholder="Price" type="text" name="price" id="price" th:field="*{price}"><br>
     <select th:field="*{category}">
         <option th:each="category : ${categories}"

@@ -12,16 +12,19 @@
 <body>
 <header th:insert="/components/header :: header"></header>
 <div class="container">
-<form th:action="@{/AdminPanel/product/add/accept}" th:object="${Product}" method="post">
-    <input placeholder="name" type="text" name="name" id="name" th:field="*{name}"><br>
-    <input placeholder="description" type="text" name="description" id="description" th:field="*{description}"><br>
-    <input placeholder="Producer" type="text" name="producer" id="producer" th:field="*{producer}"><br>
-    <input placeholder="Price" type="text" name="price" id="price" th:field="*{price}"><br>
-    <select th:field="*{category}">
-        <option th:each="category : ${categories}"
-                th:value="${category.getId()}"
-                th:text="${category.getName()}">
-            Address
+<form th:action="@{/AdminPanel/incom/add/accept}" th:object="${Incom}" method="post">
+    <input placeholder="name" type="date" name="name" id="name" th:field="*{incomDate}"><br>
+    <input placeholder="description" type="text" name="description" id="description" th:field="*{quantity}"><br>
+    <select th:field="*{provider}">
+        <option th:each="provider : ${providers}"
+                th:value="${provider.getId()}"
+                th:text="${provider.getName()}">
+        </option>
+    </select><br>
+    <select th:field="*{product}">
+        <option th:each="product : ${products}"
+                th:value="${product.getId()}"
+                th:text="${product.getName()}">
         </option>
     </select><br>
     <input type="submit">

@@ -12,18 +12,8 @@
 <body>
 <header th:insert="/components/header :: header"></header>
 <div class="container">
-<form th:action="@{/AdminPanel/product/add/accept}" th:object="${Product}" method="post">
+<form th:action="@{/AdminPanel/provider/add/accept}" th:object="${Provider}" method="post">
     <input placeholder="name" type="text" name="name" id="name" th:field="*{name}"><br>
-    <input placeholder="description" type="text" name="description" id="description" th:field="*{description}"><br>
-    <input placeholder="Producer" type="text" name="producer" id="producer" th:field="*{producer}"><br>
-    <input placeholder="Price" type="text" name="price" id="price" th:field="*{price}"><br>
-    <select th:field="*{category}">
-        <option th:each="category : ${categories}"
-                th:value="${category.getId()}"
-                th:text="${category.getName()}">
-            Address
-        </option>
-    </select><br>
     <input type="submit">
 </form>
 </div>

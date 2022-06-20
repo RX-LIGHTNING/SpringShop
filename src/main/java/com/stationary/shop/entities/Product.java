@@ -15,14 +15,32 @@ public class Product {
     private BigDecimal price;
     private String description;
     private String producer;
-    private Integer quantity;
     @OneToOne
     private Category category;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private List<Order> order;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private List<Incom> incoms;
     public String getName() {
         return name;
+    }
+
+    public List<Order> getOrder() {
+        return order;
+    }
+
+    public void setOrder(List<Order> order) {
+        this.order = order;
+    }
+
+    public List<Incom> getIncoms() {
+        return incoms;
+    }
+
+    public void setIncoms(List<Incom> incoms) {
+        this.incoms = incoms;
     }
 
     public void setName(String name) {
@@ -53,13 +71,6 @@ public class Product {
         this.producer = producer;
     }
 
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
 
     public Category getCategory() {
         return category;
