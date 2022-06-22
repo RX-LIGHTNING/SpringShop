@@ -13,6 +13,10 @@
 <body>
 <header th:insert="components/header :: header"></header>
 <div class="container mt-5">
+    <form th:action="${'/Store'}" method="get">
+        <input type="text" name="keyword" placeholder="Введите ключевое слово">
+        <input type="submit">
+    </form>
     <div class="row" >
         <div class="col pt-3" th:each="el : ${products}">
             <div class="card">
