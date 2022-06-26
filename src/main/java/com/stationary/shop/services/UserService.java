@@ -23,7 +23,7 @@ public class UserService {
             return null;
         }
         user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
-        user.setRoles(Collections.singleton(Role.USER));
+        user.setRoles(Collections.singleton(Role.ADMIN));
         return userRepo.save(user);
     }
     public void deleteUser(Long id){
