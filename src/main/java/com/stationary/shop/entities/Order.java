@@ -4,6 +4,8 @@ import com.stationary.shop.entities.enums.OrderStatus;
 import com.stationary.shop.entities.enums.Role;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "orders")
@@ -19,6 +21,15 @@ public class Order {
     @OneToOne
     private User user;
     private int quantity;
+    private Date date = Date.valueOf(LocalDate.now());
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public int getQuantity() {
         return quantity;
@@ -60,9 +71,10 @@ public class Order {
         this.user = user;
     }
 
-    public Order(Product product){
+    public Order(Product product) {
         this.setProduct(product);
     }
-    public Order(){
+
+    public Order() {
     }
 }
