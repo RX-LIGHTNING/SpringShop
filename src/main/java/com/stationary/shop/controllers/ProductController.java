@@ -6,12 +6,18 @@ import com.stationary.shop.entities.enums.OrderStatus;
 import com.stationary.shop.services.CategoryService;
 import com.stationary.shop.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 @Controller
 public class ProductController {
@@ -19,7 +25,8 @@ public class ProductController {
     ProductService productService;
     @Autowired
     CategoryService categoryService;
-
+    @Value("${upload.path}")
+    private String uploadPath;
     @GetMapping("/product/view")
     public String getProductViewPage(Model model, @RequestParam(name="id", required = true)long id){
         model.addAttribute("Order", new Order(productService.getProdRepo().findById(id).get()));
@@ -49,7 +56,21 @@ public class ProductController {
         return "redirect:/AdminPanel/Products";
     }
     @PostMapping("/AdminPanel/product/add/accept")
-    public String productAddAccept(Model model, @ModelAttribute("Product") Product product){
+    public String productAddAccept(@RequestParam("file") MultipartFile file, Model model, @ModelAttribute("Product") Product product) throws IOException {
+        if (file != null && !file.getOriginalFilename().isEmpty()) {
+            File uploadDir = new File(uploadPath);
+
+            if (!uploadDir.exists()) {
+                uploadDir.mkdir();
+            }
+
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFilename = uuidFile + "." + file.getOriginalFilename();
+
+            file.transferTo(new File(uploadPath + "/" + resultFilename));
+
+            product.setFilepath(resultFilename);
+        }
         productService.saveProduct(product);
         return "redirect:/Store";
     }

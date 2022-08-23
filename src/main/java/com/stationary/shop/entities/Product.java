@@ -15,6 +15,7 @@ public class Product {
     private BigDecimal price;
     private String description;
     private String producer;
+    private String filepath;
     @OneToOne
     private Category category;
     @OneToMany(cascade = CascadeType.ALL)
@@ -86,6 +87,14 @@ public class Product {
 
     public Long getId() {
         return id;
+    }
+
+    public String getFilepath() {
+        return filepath;
+    }
+
+    public void setFilepath(String filepath) {
+        this.filepath = filepath;
     }
 
     public Product() {
